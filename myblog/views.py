@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
-from .models import Post
+from .models import Post, Description
 
 # Create your views here.
 class Index(TemplateView):
@@ -8,6 +8,7 @@ class Index(TemplateView):
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         context["posts"] = Post.objects.all ()
+        context["description"] = Description.objects.all ()
         return context
 
 class Card(TemplateView):
@@ -19,6 +20,7 @@ class Profile(ListView):
  
 class Detailed(DetailView):
     model=Post
+    model=Description
     Template_name="details.html"
     
 
